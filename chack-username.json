@@ -1,0 +1,9 @@
+require 'rest-client'
+require 'json'
+
+def find_rubika_account_id_by_name(name)
+  response = RestClient.get("https://api.rubika.ir/v1/search/user?q=#{name}")
+  json_response = JSON.parse(response.body)
+  account_id = json_response['data']['users'][0]['id']
+  return account_id
+end
